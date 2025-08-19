@@ -88,3 +88,17 @@ pub const NFULA_CT_INFO: u16 = libc::NFULA_CT_INFO as u16;
 
 pub const NFULNL_MSG_CONFIG: u8 = libc::NFULNL_MSG_CONFIG as u8;
 pub const NFULNL_MSG_PACKET: u8 = libc::NFULNL_MSG_PACKET as u8;
+
+// Conntrack (ctnetlink) message types
+// NOTE: The following conntrack message type constants are not currently
+// exported by the libc crate. They mirror the enum values from
+// include/uapi/linux/conntrack/nf_conntrack_common.h (ip_conntrack_netlink.h)
+// enum ip_conntrack_msg_types { ... } starting at 0.
+pub const IPCTNL_MSG_CT_NEW: u8 = 0;
+pub const IPCTNL_MSG_CT_GET: u8 = 1;
+pub const IPCTNL_MSG_CT_DELETE: u8 = 2;
+pub const IPCTNL_MSG_CT_GET_CTRZERO: u8 = 3;
+pub const IPCTNL_MSG_CT_GET_STATS_CPU: u8 = 4;
+pub const IPCTNL_MSG_CT_GET_STATS: u8 = 5;
+pub const IPCTNL_MSG_CT_GET_DYING: u8 = 6;
+pub const IPCTNL_MSG_CT_GET_UNCONFIRMED: u8 = 7;

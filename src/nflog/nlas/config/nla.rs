@@ -21,7 +21,7 @@ use crate::{
 };
 
 #[derive(Clone, Debug, PartialEq, Eq, From, IsVariant)]
-pub enum ConfigNla {
+pub enum ConfigNla { // each message has its own set of attributes which go with it 
     Cmd(ConfigCmd),
     Mode(ConfigMode),
     #[from(ignore)]

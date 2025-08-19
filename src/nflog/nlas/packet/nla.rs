@@ -27,7 +27,7 @@ use crate::{
 };
 
 #[derive(Clone, Debug, PartialEq, Eq, From, IsVariant)]
-pub enum PacketNla {
+pub enum PacketNla { // attributes corresponding to this message type - these go with the message 
     #[from]
     PacketHdr(PacketHdr),
     Mark(u32),

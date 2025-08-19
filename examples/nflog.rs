@@ -68,6 +68,7 @@ fn main() {
         AF_INET,
         1,
         vec![
+            // Convert to ConfigNla: You use .into() to convert each option into a variant of the ConfigNla enum. This is possible because of the #[derive(From)] macro and manual From implementations.
             ConfigCmd::Bind.into(),
             ConfigFlags::SEQ_GLOBAL.into(),
             ConfigMode::PACKET_MAX.into(),
