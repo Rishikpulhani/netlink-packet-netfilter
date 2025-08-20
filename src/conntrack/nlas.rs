@@ -6,12 +6,12 @@ use netlink_packet_utils::{
 };
 
 use crate::conntrack::{
-	conntrack_tuple::ConntrackTupleNla,
-	conntrack_proto_info::ConntrackProtoInfoNla,
-	conntrack_counters::ConntrackCountersNla,
-	conntrack_timestamp::ConntrackTimestampNla,
-	conntrack_nat::{ConntrackNatAttrs},
-	conntrack_seq::ConntrackSeqAdjNla,
+	tuple::ConntrackTupleNla,
+	proto_info::ConntrackProtoInfoNla,
+	counters::ConntrackCountersNla,
+	timestamp::ConntrackTimestampNla,
+	nat::ConntrackNatAttrs,
+	seq::ConntrackSeqAdjNla,
 };
 
 /// Conntrack netlink attributes placeholder.
