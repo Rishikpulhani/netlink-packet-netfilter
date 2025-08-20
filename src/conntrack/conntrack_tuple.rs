@@ -5,6 +5,8 @@ use netlink_packet_utils::{
     DecodeError, Parseable,
 };
 
+use crate::conntrack::{conntrack_tuple_ip::ConntrackTupleIpNla, conntrack_tuple_proto::ConntrackTupleProtoNla};
+
 // ctattr_tuple enum (nested inside certain top-level conntrack tuple attributes)
 // enum ctattr_tuple {
 // 	CTA_TUPLE_UNSPEC,
@@ -17,8 +19,10 @@ use netlink_packet_utils::{
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum ConntrackTupleNla {
     Unspec,
-    Ip,
-    Proto,
+    // Nested IP attribute set (at most one)
+    Ip(ConntrackTupleIpNla),
+    // Nested L4 protocol attribute set (at most one)
+    Proto(ConntrackTupleProtoNla),
     Zone,
     Other(DefaultNla),
 }
