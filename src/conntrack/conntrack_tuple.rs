@@ -18,7 +18,8 @@ use crate::conntrack::{conntrack_tuple_ip::ConntrackTupleIpNla, conntrack_tuple_
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum ConntrackTupleNla {
-    Unspec,
+    // removed as just for not set/invalid
+    // Unspec, 
     // Nested IP attribute set (at most one)
     Ip(ConntrackTupleIpNla),
     // Nested L4 protocol attribute set (at most one)

@@ -5,7 +5,14 @@ use netlink_packet_utils::{
 	DecodeError, Parseable,
 };
 
-use crate::conntrack::conntrack_tuple::ConntrackTupleNla;
+use crate::conntrack::{
+	conntrack_tuple::ConntrackTupleNla,
+	conntrack_proto_info::ConntrackProtoInfoNla,
+	conntrack_counters::ConntrackCountersNla,
+	conntrack_timestamp::ConntrackTimestampNla,
+	conntrack_nat::{ConntrackNatAttrs},
+	conntrack_seq::ConntrackSeqAdjNla,
+};
 
 /// Conntrack netlink attributes placeholder.
 ///
@@ -15,7 +22,8 @@ use crate::conntrack::conntrack_tuple::ConntrackTupleNla;
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum ConntrackNla {
 	// CTA_UNSPEC
-	Unspec,
+    // removed as just for not set/invalid 
+	// Unspec, 
 	// CTA_TUPLE_ORIG
 	TupleOrig(Vec<ConntrackTupleNla>),
 	// CTA_TUPLE_REPLY
@@ -23,31 +31,31 @@ pub enum ConntrackNla {
 	// CTA_STATUS
 	Status,
 	// CTA_PROTOINFO
-	ProtoInfo,
+	ProtoInfo(ConntrackProtoInfoNla),
 	// CTA_HELP
 	Help,
 	// CTA_NAT_SRC (aka CTA_NAT for backwards compatibility)
-	NatSrc,
+	NatSrc(ConntrackNatAttrs), // as this is a vector of ConntrackNatNlas
 	// CTA_TIMEOUT
 	Timeout,
 	// CTA_MARK
 	Mark,
 	// CTA_COUNTERS_ORIG
-	CountersOrig,
+	CountersOrig(Vec<ConntrackCountersNla>),
 	// CTA_COUNTERS_REPLY
-	CountersReply,
+	CountersReply(Vec<ConntrackCountersNla>),
 	// CTA_USE
 	Use,
 	// CTA_ID
 	Id,
 	// CTA_NAT_DST
-	NatDst,
+	NatDst(ConntrackNatAttrs), // as this is a vector of ConntrackNatNlas
 	// CTA_TUPLE_MASTER
 	TupleMaster(Vec<ConntrackTupleNla>), // used in exp may be removed later 
 	// CTA_SEQ_ADJ_ORIG (CTA_NAT_SEQ_ADJ_ORIG is alias)
-	SeqAdjOrig,
+	SeqAdjOrig(Vec<ConntrackSeqAdjNla>),
 	// CTA_SEQ_ADJ_REPLY (CTA_NAT_SEQ_ADJ_REPLY is alias)
-	SeqAdjReply,
+	SeqAdjReply(Vec<ConntrackSeqAdjNla>),
 	// CTA_SECMARK (obsolete)
 	SecMark,
 	// CTA_ZONE
@@ -55,7 +63,7 @@ pub enum ConntrackNla {
 	// CTA_SECCTX
 	SecCtx,
 	// CTA_TIMESTAMP
-	Timestamp,
+	Timestamp(Vec<ConntrackTimestampNla>),
 	// CTA_MARK_MASK
 	MarkMask,
 	// CTA_LABELS
@@ -63,7 +71,8 @@ pub enum ConntrackNla {
 	// CTA_LABELS_MASK
 	LabelsMask,
 	// CTA_SYNPROXY
-	SynProxy,
+    // not implemented for now 
+	// SynProxy, 
 	// CTA_FILTER
 	Filter,
 	// CTA_STATUS_MASK

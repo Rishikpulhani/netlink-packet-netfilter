@@ -21,7 +21,8 @@ use netlink_packet_utils::{
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum ConntrackTupleProtoNla {
-    Unspec,
+    // removed as just for not set/invalid 
+    // Unspec,
     Num,
     SrcPort,
     DstPort,

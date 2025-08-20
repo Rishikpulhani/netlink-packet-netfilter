@@ -16,7 +16,8 @@ use netlink_packet_utils::{
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum ConntrackTupleIpNla {
-    Unspec,
+    // removed as just for not set/invalid 
+    // Unspec,
     V4Src,
     V4Dst,
     V6Src,
